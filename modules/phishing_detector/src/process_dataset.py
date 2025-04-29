@@ -1,5 +1,5 @@
 import pandas as pd
-from phishing_detector.feature_extractor import extract_features
+from feature_extractor import extract_features
 
 def process_dataset(input_csv: str, output_csv: str):
     df = pd.read_csv(input_csv)
@@ -18,7 +18,7 @@ def process_dataset(input_csv: str, output_csv: str):
     print(f'Features salvas em: {output_csv}')
 
 if __name__ == '__main__':
-    input_csv = 'dataset/urls.csv'
-    output_csv = 'dataset/features.csv'
+    input_csv = '../dataset/urls.csv'
+    output_csv = '../dataset/features.csv'
     process_dataset(input_csv, output_csv)
 

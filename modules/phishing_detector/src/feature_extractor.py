@@ -1,11 +1,10 @@
 import ipaddress
-import re
 import socket
 import ssl
 import tldextract
 from urllib.parse import urlparse
 
-
+    
 def extract_features(url: str) -> dict:
     features = {}
 
