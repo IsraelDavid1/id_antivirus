@@ -18,7 +18,7 @@ def extract_features(url: str) -> dict:
 
     features['dash_count'] = url.count('-')
 
-    # instead of true and false, i will be using 1/0 because it hells the machine learning
+    # instead of true and false, i will be using 1/0 because it helps the machine learning
     try:
         ipaddress.ip_address(urlparse(url).netloc)
         features['has_ip'] = 1

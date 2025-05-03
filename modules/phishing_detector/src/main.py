@@ -1,7 +1,11 @@
 import joblib
 import pandas as pd
+from colorama import init, Fore
 from feature_extractor import extract_features
+from time import time
 
+
+init(autoreset=True)
 
 def detect_phishing(url: str):
 
@@ -37,11 +41,25 @@ def detect_phishing(url: str):
 
     prediction = model.predict(features_df)
 
-    result = 'PHISHING ALERT!!!' if prediction[0] ==1 else 'just for testing' #put continue
-
-    print(result)
+    return prediction[0]
 
 if __name__ == '__main__':
-    url = input('put the url: ')
-    detect_phishing(url)
+    while True:
+        url = input('\nput the URL (or q to quit):  ').strip()
+        if url.lower() == 'q':
+            break
+        if not url.startswith(('https://', 'http://')):
+            print(Fore.YELLOW + 'PLEASE INSERT HTTP:// OR HTTPS://')
+            continue
+
+        start = time()
+        result = detect_phishing(url)
+        elapsed = time() - start
+
+        if result == 1:
+            print(Fore.RED + 'PHISHING ALERT!!!')
+        else:
+            print(Fore.GREEN + 'no phishing detected')
+
+        print(Fore.CYAN + f'detection time {elapsed:.2f} seconds')
 
